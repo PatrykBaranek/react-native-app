@@ -1,5 +1,5 @@
 import { SafeAreaView, Text } from 'react-native';
-import { useGetGameByIdQuery } from '../api/freeToPlayapi';
+import { useGetGameByIdQuery } from '../app/api/freeToPlayapi';
 
 import { GameDetailsScreenRouteProp } from '../navigation/HomeStackScreen';
 import { useRoute } from '@react-navigation/native';

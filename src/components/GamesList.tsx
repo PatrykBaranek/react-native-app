@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native';
-import { FTPGame, useGetGamesQuery } from '../api/freeToPlayapi';
+import { FTPGame, useGetGamesQuery } from '../app/api/freeToPlayapi';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { GameItem } from './GameItem';
 

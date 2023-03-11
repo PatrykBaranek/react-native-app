@@ -1,6 +1,6 @@
 import { StyleSheet, ListRenderItemInfo } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import { FTPGame } from '../api/freeToPlayapi';
+import { FTPGame } from '../app/api/freeToPlayapi';
 import { useNavigation } from '@react-navigation/native';
 import { GameDetailsScreenNavigationProp } from '../navigation/HomeStackScreen';
 import { Card } from 'react-native-paper';
