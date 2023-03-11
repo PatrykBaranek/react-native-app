@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export interface FTPGames {
+export interface FTPGame {
   id: number;
   title: string;
   thumbnail: string;
@@ -18,10 +18,13 @@ export const freeToPlayApi = createApi({
   reducerPath: 'freeToPlayApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.freetogame.com/api' }),
   endpoints: (builder) => ({
-    getGames: builder.query<FTPGames[], void>({
+    getGames: builder.query<FTPGame[], void>({
       query: () => '/games',
+    }),
+    getGameById: builder.query<FTPGame, number>({
+      query: (id: number) => `/game?id=${id}`,
     }),
   }),
 });
 
-export const { useGetGamesQuery } = freeToPlayApi;
+export const { useGetGamesQuery, useGetGameByIdQuery } = freeToPlayApi;

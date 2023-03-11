@@ -8,8 +8,7 @@ const theme: ThemeProp = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'red',
-    secondary: '#333',
+    primary: '#2081C3',
   },
 };
 

@@ -1,10 +1,17 @@
-import { View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { Search } from '../components/Search';
 
 export const SearchScreen: React.FC = () => {
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <Search />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#333',
+  },
+});

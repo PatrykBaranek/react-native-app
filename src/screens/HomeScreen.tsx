@@ -1,17 +1,11 @@
-import { SafeAreaView, StyleSheet, Text, FlatList, ListRenderItemInfo } from 'react-native';
-import { Header } from '../components/Header';
-import { NavigationProps } from '../navigation/HomeStackScreen';
-import { FTPGames, useGetGamesQuery } from '../api/freeToPlayapi';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { GamesList } from '../components/GamesList';
 
-export const HomeScreen = ({ route, navigation }: NavigationProps) => {
-  const { data: games, isLoading } = useGetGamesQuery();
-
-  const renderItems = ({ item }: ListRenderItemInfo<FTPGames>) => <Text>{item.title}</Text>;
-
+export const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header navigation={navigation} route={route} />
-      <FlatList data={games} renderItem={renderItems} />
+      <StatusBar hidden={true} />
+      <GamesList />
     </SafeAreaView>
   );
 };
@@ -19,5 +13,6 @@ export const HomeScreen = ({ route, navigation }: NavigationProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333',
   },
 });
