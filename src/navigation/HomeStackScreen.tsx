@@ -3,6 +3,7 @@ import { GameDetailsScreen } from '../screens/GameDetailsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { ROUTES } from '../constants/routes';
+import { GenrePicker } from '../components/GenrePicker';
 
 type RootStackParamList = {
   Home: undefined;
@@ -24,17 +25,11 @@ export const HomeStackScreen = () => {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerBackTitleVisible: false,
-        headerBackVisible: false,
-        headerStyle: {
-          backgroundColor: '#000',
-        },
-        headerTintColor: '#fff',
-        headerBlurEffect: 'extraLight',
+        headerShown: false,
       }}
     >
-      <Stack.Screen name="FreeToPlayGames" component={HomeScreen} />
-      <Stack.Screen name="GameDetails" component={GameDetailsScreen} />
+      <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
+      <Stack.Screen name={ROUTES.GAMES_DETAILS} component={GameDetailsScreen} />
     </Stack.Navigator>
   );
 };

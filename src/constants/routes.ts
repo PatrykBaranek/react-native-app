@@ -1,5 +1,5 @@
 export const ROUTES = {
-  HOME: 'Home',
+  HOME: 'FreeToPlayGames',
   GAMES_DETAILS: 'GameDetails',
   SEARCH: 'Search',
   WISHLIST: 'Wishlist',

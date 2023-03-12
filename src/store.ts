@@ -1,8 +1,10 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { freeToPlayApi } from '../api/freeToPlayapi';
+import { configureStore } from '@reduxjs/toolkit';
+import { freeToPlayApi } from './api/freeToPlayapi';
+import wishlistReducer from './wishlistSlice/wishlistSlice';
 
 export const store = configureStore({
   reducer: {
+    wishlist: wishlistReducer,
     [freeToPlayApi.reducerPath]: freeToPlayApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(freeToPlayApi.middleware),

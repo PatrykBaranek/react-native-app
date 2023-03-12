@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native';
-import { FTPGame, useGetGamesQuery } from '../app/api/freeToPlayapi';
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { FTPGame, useGetGamesQuery } from '../api/freeToPlayapi';
 import { GameItem } from './GameItem';
 
-export const GamesList = () => {
+export const GamesList: React.FC = () => {
   const { data: games, isLoading, isFetching, refetch } = useGetGamesQuery();
 
-  const renderItem = ({ item, index, separators }: ListRenderItemInfo<FTPGame>) => {
-    return <GameItem item={item} index={index} separators={separators} />;
-  };
+  const renderItem = useCallback(
+    ({ item, index, separators }: ListRenderItemInfo<FTPGame>) => {
+      return <GameItem item={item} index={index} separators={separators} />;
+    },
+    [games]
+  );
 
   const onRefresh = () => {
     refetch();
@@ -19,13 +21,10 @@ export const GamesList = () => {
     <FlatList
       data={games}
       refreshControl={
-        <RefreshControl
-          refreshing={isFetching}
-          onRefresh={onRefresh}
-          colors={['#fff', '#ccc', 'white']}
-        />
+        <RefreshControl refreshing={isFetching} onRefresh={onRefresh} tintColor={'#fff'} />
       }
       renderItem={renderItem}
+      style={{ backgroundColor: '#111', shadowColor: '#222' }}
     />
   );
 };
