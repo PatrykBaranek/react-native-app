@@ -1,10 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { HomeStackScreen } from './HomeStackScreen';
-import { SearchScreen } from '../screens/SearchScreen';
-import Iconicons from '@expo/vector-icons/Ionicons';
 import { ROUTES } from '../constants/routes';
 import { WishlistScreen } from '../screens/WishlistScreen';
+import Iconicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +16,6 @@ export const TabNavigator = () => {
           tabBarIcon: ({ color, size }) => {
             if (route.name === ROUTES.HOME) {
               return <Iconicons name="home" size={size} color={color} />;
-            } else if (route.name === ROUTES.SEARCH) {
-              return <Iconicons name="search" size={size} color={color} />;
             } else if (route.name === ROUTES.WISHLIST) {
               return <Iconicons name="list" size={size} color={color} />;
             }
@@ -36,7 +33,7 @@ export const TabNavigator = () => {
         })}
       >
         <Tab.Screen name={ROUTES.HOME} component={HomeStackScreen} />
-        <Tab.Screen name={ROUTES.SEARCH} component={SearchScreen} />
+
         <Tab.Screen name={ROUTES.WISHLIST} component={WishlistScreen} />
       </Tab.Navigator>
     </NavigationContainer>

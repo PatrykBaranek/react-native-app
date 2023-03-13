@@ -28,7 +28,7 @@ export const HomeStackScreen = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
+      <Stack.Screen name={'FreeToPlay'} component={HomeScreen} />
       <Stack.Screen name={ROUTES.GAMES_DETAILS} component={GameDetailsScreen} />
     </Stack.Navigator>
   );

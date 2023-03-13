@@ -3,4 +3,5 @@ export const ROUTES = {
   GAMES_DETAILS: 'GameDetails',
   SEARCH: 'Search',
   WISHLIST: 'Wishlist',
+  GAME_DETAILS_WISHLIST: 'GameDetailsWishlist',
 };

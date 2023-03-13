@@ -10,7 +10,7 @@ export const WishlistStackScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={ROUTES.WISHLIST} component={WishlistScreen} />
-      <Stack.Screen name={ROUTES.GAMES_DETAILS} component={GameDetailsScreen} />
+      <Stack.Screen name={ROUTES.GAME_DETAILS_WISHLIST} component={GameDetailsScreen} />
     </Stack.Navigator>
   );
 };
