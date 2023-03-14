@@ -19,7 +19,7 @@ const App: React.FC = () => {
     <ReduxProvider store={store}>
       <PaperProvider theme={theme}>
         <SafeAreaProvider>
-          <StatusBar hidden={true} />
+          {/* <StatusBar hidden={true} /> */}
           <TabNavigator />
         </SafeAreaProvider>
       </PaperProvider>

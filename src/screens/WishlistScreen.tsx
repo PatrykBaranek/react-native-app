@@ -7,8 +7,10 @@ export const WishlistScreen = () => {
   const games = useAppSelector((state) => state.wishlist.games);
 
   return (
-    <SafeAreaView>
-      <Text variant="bodyLarge">Wishlist</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#111' }}>
+      <Text variant="titleLarge" style={{ color: '#fff' }}>
+        Wishlist
+      </Text>
       <FlatList
         data={games}
         renderItem={(game) => <Text variant="titleLarge">{game.item.title}</Text>}

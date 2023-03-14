@@ -21,7 +21,7 @@ export const GameDetails: React.FC = () => {
     try {
       await Linking.openURL(game.game_url);
     } catch (err) {
-      return;
+      return alert('cannot find game website');
     }
   };
 
@@ -42,7 +42,9 @@ export const GameDetails: React.FC = () => {
           </View>
         </View>
         <View style={styles.buttonConatiner}>
-          <Button onPress={() => handlePress(game as FTPGame)}>Game Website</Button>
+          <Button icon="web" mode="outlined" onPress={() => handlePress(game as FTPGame)}>
+            Game Website
+          </Button>
           <AddToWishlistButtons game={game as FTPGame} />
         </View>
       </ScrollView>
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     marginBottom: 10,
-    fontSize: 46,
+    fontSize: 42,
     textAlign: 'center',
     color: '#fff',
   },
