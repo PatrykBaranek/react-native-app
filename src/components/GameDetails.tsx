@@ -1,10 +1,11 @@
-import { Image, Text, View, StyleSheet, ScrollView } from 'react-native';
-import { useGetGameByIdQuery } from '../api/freeToPlayapi';
+import { Image, Text, View, StyleSheet, ScrollView, Linking } from 'react-native';
+import { FTPGame, useGetGameByIdQuery } from '../api/freeToPlayapi';
 
 import { GameDetailsScreenRouteProp } from '../navigation/HomeStackScreen';
 import { useRoute } from '@react-navigation/native';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AddToWishlistButtons } from './AddToWishlistButtons';
 
 export const GameDetails: React.FC = () => {
   const route = useRoute<GameDetailsScreenRouteProp>();
@@ -15,6 +16,14 @@ export const GameDetails: React.FC = () => {
       <ActivityIndicator style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
     );
   }
+
+  const handlePress = async (game: FTPGame) => {
+    try {
+      await Linking.openURL(game.game_url);
+    } catch (err) {
+      return;
+    }
+  };
 
   return (
     <SafeAreaView style={styles.conatiner}>
@@ -27,10 +36,14 @@ export const GameDetails: React.FC = () => {
           <View style={styles.extraInfoContainer}>
             <Text style={styles.infoText}>Release Date: {game?.release_date}</Text>
             <Text style={styles.infoText}>Genre: {game?.genre}</Text>
-            <Text style={styles.infoText}>Developer: {game?.developer}</Text>
             <Text style={styles.infoText}>Platform: {game?.platform}</Text>
+            <Text style={styles.infoText}>Developer: {game?.developer}</Text>
             <Text style={styles.infoText}>Publisher: {game?.publisher}</Text>
           </View>
+        </View>
+        <View style={styles.buttonConatiner}>
+          <Button onPress={() => handlePress(game as FTPGame)}>Game Website</Button>
+          <AddToWishlistButtons game={game as FTPGame} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -56,7 +69,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   descriptionText: {
-    textAlign: 'center',
+    textAlign: 'justify',
+    padding: 20,
     fontSize: 24,
     color: '#fff',
   },
@@ -64,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'baseline',
     marginTop: 20,
-    padding: 20,
+    padding: 30,
     borderRadius: 10,
     height: 300,
     backgroundColor: '#000',
@@ -74,5 +88,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ccc',
     fontSize: 20,
+  },
+
+  buttonConatiner: {
+    marginVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });
