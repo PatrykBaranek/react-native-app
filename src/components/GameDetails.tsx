@@ -1,5 +1,5 @@
 import { Image, Text, View, StyleSheet, ScrollView, Linking } from 'react-native';
-import { FTPGame, useGetGameByIdQuery } from '../api/freeToPlayapi';
+import { FTPGame, useGetGameByIdQuery } from '../app/api/freeToPlayapi';
 
 import { GameDetailsScreenRouteProp } from '../navigation/HomeStackScreen';
 import { useRoute } from '@react-navigation/native';

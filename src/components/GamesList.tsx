@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native';
-import { FTPGame, useGetGamesQuery } from '../api/freeToPlayapi';
+import { FTPGame, useGetGamesByGenreQuery } from '../app/api/freeToPlayapi';
 import { GameItem } from './GameItem';
+import { useAppSelector } from '../hooks';
 
 export const GamesList: React.FC = () => {
-  const { data: games, isLoading, isFetching, refetch } = useGetGamesQuery();
+  const genre = useAppSelector((state) => state.genre.selectedGenre);
+  const { data: games, isFetching, refetch } = useGetGamesByGenreQuery(genre);
 
   const renderItem = useCallback(
     ({ item, index, separators }: ListRenderItemInfo<FTPGame>) => {
@@ -16,6 +18,10 @@ export const GamesList: React.FC = () => {
   const onRefresh = () => {
     refetch();
   };
+
+  useEffect(() => {
+    onRefresh();
+  }, [genre, games]);
 
   return (
     <FlatList

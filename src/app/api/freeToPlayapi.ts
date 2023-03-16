@@ -19,13 +19,18 @@ export const freeToPlayApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.freetogame.com/api' }),
   endpoints: (builder) => ({
     getGames: builder.query<FTPGame[], void>({
-      query: () => '/games?limit=20',
+      query: () => '/games',
     }),
     getGameById: builder.query<FTPGame, number>({
       query: (id: number) => `/game?id=${id}`,
     }),
     getGamesByGenre: builder.query<FTPGame[], string>({
-      query: (genre: string) => `games?genre=${genre}`,
+      query: (genre: string) => {
+        if (genre === '') {
+          return `/games`;
+        }
+        return `/games?category=${genre}`;
+      },
     }),
   }),
 });
