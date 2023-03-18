@@ -5,7 +5,7 @@ import { ROUTES } from '../constants/routes';
 import { WishlistScreen } from '../screens/WishlistScreen';
 import Iconicons from '@expo/vector-icons/Ionicons';
 import { useAppSelector } from '../app/hooks';
-import { LoginForm } from '../components/login/LoginForm';
+import { LoginScreen } from '../screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ export const TabNavigator = () => {
   const isAuthenticated = useAppSelector((state) => state.login.isAuthenticated);
 
   if (!isAuthenticated) {
-    return <LoginForm />;
+    return <LoginScreen />;
   }
 
   return (

@@ -1,5 +1,6 @@
-import { SafeAreaView } from 'react-native';
+import React from 'react';
+import { LoginForm } from '../components/login/LoginForm';
 
 export const LoginScreen = () => {
-  return <SafeAreaView></SafeAreaView>;
+  return <LoginForm />;
 };
