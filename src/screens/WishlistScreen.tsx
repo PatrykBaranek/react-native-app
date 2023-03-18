@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Wishlist } from '../components/Wishlist';
+import { Wishlist } from '../components/wishlist/Wishlist';
 
 export const WishlistScreen = () => {
   return (
