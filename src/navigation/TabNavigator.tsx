@@ -3,9 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { HomeStackScreen } from './HomeStackScreen';
 import { ROUTES } from '../constants/routes';
 import { WishlistScreen } from '../screens/WishlistScreen';
-import Iconicons from '@expo/vector-icons/Ionicons';
 import { useAppSelector } from '../app/hooks';
 import { LoginScreen } from '../screens/LoginScreen';
+import { DashboardScreen } from '../screens/DashboardScreen';
+import Iconicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +27,8 @@ export const TabNavigator = () => {
               return <Iconicons name="home" size={size} color={color} />;
             } else if (route.name === ROUTES.WISHLIST) {
               return <Iconicons name="list" size={size} color={color} />;
+            } else if (route.name === ROUTES.DASHBOARD) {
+              return <Iconicons name="person-circle" size={size} color={color} />;
             }
           },
           tabBarActiveTintColor: '#fff',
@@ -43,6 +46,7 @@ export const TabNavigator = () => {
         <Tab.Screen name={ROUTES.HOME} component={HomeStackScreen} />
 
         <Tab.Screen name={ROUTES.WISHLIST} component={WishlistScreen} />
+        <Tab.Screen name={ROUTES.DASHBOARD} component={DashboardScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
