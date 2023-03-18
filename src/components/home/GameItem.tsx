@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, ListRenderItemInfo } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import { FTPGame } from '../app/api/freeToPlayapi';
 import { Card } from 'react-native-paper';
 import { AddToWishlistButtons } from './AddToWishlistButtons';
-import { GameDetailsScreenNavigationProp } from '../navigation/HomeStackScreen';
+import { FTPGame } from '../../app/api/freeToPlayapi';
+import { GameDetailsScreenNavigationProp } from '../../navigation/HomeStackScreen';
 
 export const GameItem: React.FC<ListRenderItemInfo<FTPGame>> = React.memo(
   ({ item: game }: ListRenderItemInfo<FTPGame>) => {

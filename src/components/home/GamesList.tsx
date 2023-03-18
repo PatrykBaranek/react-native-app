@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native';
-import { FTPGame, useGetGamesByGenreQuery } from '../app/api/freeToPlayapi';
+import { useGetGamesByGenreQuery, FTPGame } from '../../app/api/freeToPlayapi';
+import { useAppSelector } from '../../app/hooks';
 import { GameItem } from './GameItem';
-import { useAppSelector } from '../hooks';
 
 export const GamesList: React.FC = () => {
   const genre = useAppSelector((state) => state.genre.selectedGenre);

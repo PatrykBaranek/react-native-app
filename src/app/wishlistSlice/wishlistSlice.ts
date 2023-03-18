@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { FTPGame } from '../api/freeToPlayapi';
 
-type GamesType = { id: number; title: string };
+export type GamesType = { id: number; title: string; addDate: string };
 
 interface initialState {
   games: GamesType[];
@@ -21,10 +21,11 @@ const wishlistSlice = createSlice({
         state.games.push({
           id: action.payload.id as number,
           title: action.payload.title as string,
+          addDate: new Date().toISOString(),
         });
       }
     },
-    removeGameFromWishlist: (state, action: PayloadAction<FTPGame>) => {
+    removeGameFromWishlist: (state, action: PayloadAction<Partial<FTPGame>>) => {
       const gameToRemove = state.games.find((game) => game.id === action.payload.id);
 
       state.games = state.games.filter((game) => game.id !== gameToRemove?.id);

@@ -1,6 +1,6 @@
 import { StyleSheet, SafeAreaView } from 'react-native';
-import { GamesList } from '../components/GamesList';
-import { HomeHeader } from '../components/HomeHeader';
+import { GamesList } from '../components/home/GamesList';
+import { HomeHeader } from '../components/home/HomeHeader';
 
 export const HomeScreen = () => {
   return (

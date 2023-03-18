@@ -1,4 +1,4 @@
-import { GameDetails } from '../components/GameDetails';
+import { GameDetails } from '../components/home/GameDetails';
 
 export const GameDetailsScreen: React.FC = () => {
   return <GameDetails />;

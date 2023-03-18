@@ -1,8 +1,8 @@
 import { Button, ButtonProps } from 'react-native-paper';
-import { useAppDispatch, useAppSelector } from '../hooks';
 import { useCallback } from 'react';
-import { FTPGame } from '../app/api/freeToPlayapi';
-import { addGameToWishlist, removeGameFromWishlist } from '../app/wishlistSlice/wishlistSlice';
+import { FTPGame } from '../../app/api/freeToPlayapi';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { addGameToWishlist, removeGameFromWishlist } from '../../app/wishlistSlice/wishlistSlice';
 
 interface AddToWishlistButtonsProps {
   game: FTPGame;

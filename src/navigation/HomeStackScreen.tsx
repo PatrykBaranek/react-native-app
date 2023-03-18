@@ -3,7 +3,7 @@ import { GameDetailsScreen } from '../screens/GameDetailsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { ROUTES } from '../constants/routes';
-import { GenrePicker } from '../components/GenrePicker';
+import { GenrePicker } from '../components/home/GenrePicker';
 
 type RootStackParamList = {
   Home: undefined;

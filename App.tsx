@@ -4,7 +4,7 @@ import { ThemeProp } from 'react-native-paper/lib/typescript/src/types';
 import { TabNavigator } from './src/navigation/TabNavigator';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store } from './src/store';
+import { store } from './src/app/store';
 
 const theme: ThemeProp = {
   ...DefaultTheme,

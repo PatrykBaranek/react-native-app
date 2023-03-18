@@ -1,11 +1,11 @@
 import { Image, Text, View, StyleSheet, ScrollView, Linking } from 'react-native';
-import { FTPGame, useGetGameByIdQuery } from '../app/api/freeToPlayapi';
 
-import { GameDetailsScreenRouteProp } from '../navigation/HomeStackScreen';
 import { useRoute } from '@react-navigation/native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AddToWishlistButtons } from './AddToWishlistButtons';
+import { GameDetailsScreenRouteProp } from '../../navigation/HomeStackScreen';
+import { FTPGame, useGetGameByIdQuery } from '../../app/api/freeToPlayapi';
 
 export const GameDetails: React.FC = () => {
   const route = useRoute<GameDetailsScreenRouteProp>();

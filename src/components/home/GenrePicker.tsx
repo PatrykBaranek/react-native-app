@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useGetGamesQuery } from '../app/api/freeToPlayapi';
-import { useAppDispatch } from '../hooks';
-import { selectGenre } from '../app/genreSlice/genreSlice';
+import { useGetGamesQuery } from '../../app/api/freeToPlayapi';
+import { useAppDispatch } from '../../app/hooks';
+import { selectGenre } from '../../app/genreSlice/genreSlice';
 import SelectDropdown from 'react-native-select-dropdown';
 import { View } from 'react-native';
 
