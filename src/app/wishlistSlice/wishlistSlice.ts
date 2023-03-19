@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { FTPGame } from '../api/freeToPlayapi';
 
-export type GamesType = { id: number; title: string; addDate: string };
+export type GamesType = { id: number; title: string; genre: string; addDate: string };
 
 interface initialState {
   games: GamesType[];
@@ -19,8 +19,9 @@ const wishlistSlice = createSlice({
       const existingGame = state.games.find((game) => game.id === action.payload.id);
       if (!existingGame) {
         state.games.push({
-          id: action.payload.id as number,
-          title: action.payload.title as string,
+          id: action.payload.id,
+          title: action.payload.title,
+          genre: action.payload.genre,
           addDate: new Date().toISOString(),
         });
       }
