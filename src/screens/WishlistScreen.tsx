@@ -6,8 +6,8 @@ import { Wishlist } from '../components/wishlist/Wishlist';
 
 export const WishlistScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#111' }}>
-      <View style={{ padding: 20, backgroundColor: '#111' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
+      <View style={{ padding: 20, backgroundColor: '#000' }}>
         <Text style={{ color: '#fff', textAlign: 'center', fontSize: 24 }}>Wishlist</Text>
       </View>
       <Wishlist />
