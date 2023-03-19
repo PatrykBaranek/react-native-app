@@ -57,7 +57,7 @@ export const LoginForm = () => {
           />
         </View>
 
-        <Button mode="contained" onPress={() => handleLogin()}>
+        <Button style={{ marginTop: 20 }} mode="contained" onPress={() => handleLogin()}>
           Login
         </Button>
       </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     height: 300,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: 20,
   },
 });
