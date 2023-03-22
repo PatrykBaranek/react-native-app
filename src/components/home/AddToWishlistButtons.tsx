@@ -2,7 +2,7 @@ import { Button, ButtonProps } from 'react-native-paper';
 import { useCallback } from 'react';
 import { FTPGame } from '../../app/api/freeToPlayapi';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addGameToWishlist, removeGameFromWishlist } from '../../app/wishlistSlice/wishlistSlice';
+import { addGameToCatalog, removeGameFromCatalog } from '../../app/gamelistSlice/gamelistSlice';
 
 interface AddToWishlistButtonsProps {
   game: FTPGame;
@@ -13,17 +13,17 @@ export const AddToWishlistButtons: React.FC<AddToWishlistButtonsProps> = ({
 }): React.ReactElement<ButtonProps> => {
   const dispatch = useAppDispatch();
 
-  const gamesInWishlist = useAppSelector((state) => state.wishlist.games);
+  const gamesInWishlist = useAppSelector((state) => state.gamelist.catalogs[0].games);
 
   const addGameToWishlistHandler = useCallback(
     (game: FTPGame) => {
-      dispatch(addGameToWishlist(game));
+      dispatch(addGameToCatalog({ game: game, catalogId: '1' }));
     },
     [dispatch]
   );
 
   const removeGameFromWishlistHandler = useCallback(
-    (game: FTPGame) => dispatch(removeGameFromWishlist(game)),
+    (game: FTPGame) => dispatch(removeGameFromCatalog({ gameId: game.id, catalogId: '1' })),
     [dispatch]
   );
   return gamesInWishlist.find((gameInWishlist) => gameInWishlist.id === game.id) ? (

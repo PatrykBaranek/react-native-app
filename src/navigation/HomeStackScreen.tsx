@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator();
 export const HomeStackScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="FreeToPlay"
       screenOptions={{
         headerShown: false,
       }}
