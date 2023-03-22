@@ -12,7 +12,6 @@ export const CatalogGamesRenderer = () => {
       (state.gamelist.catalogs.find((catalog) => catalog.id === route.params.id) as CatalogType)
         .games
   );
-  console.log(games);
 
   const renderItem = ({ item, index, separators }: ListRenderItemInfo<GamesType>) => {
     return <GamelistItem item={item} index={index} separators={separators} />;
