@@ -21,7 +21,6 @@ export const GamelistItem = ({ item: game }: ListRenderItemInfo<GamesType>) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 10,
         backgroundColor: '#0e0d0d',
         borderBottomWidth: 1,
         borderBottomColor: '#333',
