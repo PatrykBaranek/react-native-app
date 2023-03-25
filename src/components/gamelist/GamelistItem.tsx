@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { ListRenderItemInfo, View } from 'react-native';
 import { Menu, Text, IconButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { useAppDispatch } from '../../app/hooks';
-import { GamesType } from '../../app/gamelistSlice/gamelistSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { GamesType, removeGameFromCatalog } from '../../app/gamelistSlice/gamelistSlice';
 import { format } from 'date-fns';
 import { GameDetailsScreenNavigationProp } from '../../navigation/HomeStackScreen';
 
@@ -11,6 +11,10 @@ export const GamelistItem = ({ item: game }: ListRenderItemInfo<GamesType>) => {
   const dispatch = useAppDispatch();
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const navigation = useNavigation<GameDetailsScreenNavigationProp>();
+  const catalogId = useAppSelector(
+    (state) =>
+      state.gamelist.catalogs.find((catalog) => catalog.games.find((g) => g.id === game.id))?.id
+  );
 
   const date = new Date(game.addDate as string);
   const formatedDate = format(date, 'yyyy-MM-dd').toString();
@@ -41,7 +45,13 @@ export const GamelistItem = ({ item: game }: ListRenderItemInfo<GamesType>) => {
           onDismiss={() => setOpenMenu(false)}
           anchor={<IconButton onPress={() => setOpenMenu(true)} icon="menu" mode="outlined" />}
         >
-          <Menu.Item title="Remove" leadingIcon="delete" />
+          <Menu.Item
+            title="Remove"
+            leadingIcon="delete"
+            onPress={() =>
+              dispatch(removeGameFromCatalog({ gameId: game.id, catalogId: catalogId! }))
+            }
+          />
           <Menu.Item
             title="See Details"
             onPress={() => {
@@ -49,7 +59,6 @@ export const GamelistItem = ({ item: game }: ListRenderItemInfo<GamesType>) => {
               setOpenMenu(false);
             }}
           />
-          <Menu.Item title="Move to" leadingIcon="arrow-left" />
         </Menu>
       </View>
     </View>
