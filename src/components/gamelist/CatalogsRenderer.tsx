@@ -29,15 +29,19 @@ export const CatalogsRenderer = () => {
   };
 
   return (
-    <FlatList data={catalogs} renderItem={renderItem} contentContainerStyle={styles.conatiner} />
+    <FlatList
+      data={catalogs}
+      renderItem={renderItem}
+      contentContainerStyle={styles.conatiner}
+      numColumns={4}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
-    flexDirection: 'row',
   },
-  catalogItem: { position: 'relative', height: 100, width: 100, alignItems: 'center' },
+  catalogItem: { position: 'relative', height: 100, width: 90, alignItems: 'center' },
   catalogText: { color: '#fff', fontSize: 16 },
 });
