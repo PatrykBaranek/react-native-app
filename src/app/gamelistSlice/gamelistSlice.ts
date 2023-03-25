@@ -60,13 +60,11 @@ const gamelistSlice = createSlice({
       action: PayloadAction<{ catalogId: string; gameId: number }>
     ) => {
       const { catalogId, gameId } = action.payload;
-      const catalogIndex = state.catalogs.findIndex((catalog) => catalog.id === catalogId);
+      const catalog = state.catalogs.find((catalog) => catalog.id === catalogId);
 
-      if (catalogIndex !== -1) {
-        const updatedGames = state.catalogs[catalogIndex].games.filter(
-          (game) => game.id !== gameId
-        );
-        state.catalogs[catalogIndex].games = updatedGames;
+      if (catalog) {
+        const updatedGames = catalog.games.filter((game) => game.id !== gameId);
+        catalog.games = updatedGames;
       }
     },
   },
