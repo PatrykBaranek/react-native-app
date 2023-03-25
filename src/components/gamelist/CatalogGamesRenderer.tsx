@@ -4,6 +4,7 @@ import { CatalogType, GamesType } from '../../app/gamelistSlice/gamelistSlice';
 import { GamelistItem } from './GamelistItem';
 import { useRoute } from '@react-navigation/native';
 import { GamelistScreenRouteProp } from '../../navigation/GamelistStackScreen';
+import { RemoveCatalogButton } from './RemoveCatalogButton';
 
 export const CatalogGamesRenderer = () => {
   const route = useRoute<GamelistScreenRouteProp>();
@@ -18,6 +19,9 @@ export const CatalogGamesRenderer = () => {
   };
 
   return (
-    <FlatList data={games} renderItem={renderItem} keyExtractor={(game) => game.id.toString()} />
+    <>
+      <FlatList data={games} renderItem={renderItem} keyExtractor={(game) => game.id.toString()} />
+      <RemoveCatalogButton catalogId={route.params.id} />
+    </>
   );
 };

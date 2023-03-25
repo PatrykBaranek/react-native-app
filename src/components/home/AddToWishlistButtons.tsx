@@ -1,8 +1,9 @@
-import { Button, ButtonProps } from 'react-native-paper';
-import { useCallback } from 'react';
+import { ButtonProps, IconButton } from 'react-native-paper';
+import { useCallback, useEffect, useState } from 'react';
 import { FTPGame } from '../../app/api/freeToPlayapi';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addGameToCatalog, removeGameFromCatalog } from '../../app/gamelistSlice/gamelistSlice';
+import { removeGameFromCatalog } from '../../app/gamelistSlice/gamelistSlice';
+import { AddToCatalogModal } from './AddToCatalogModal';
 
 interface AddToWishlistButtonsProps {
   game: FTPGame;
@@ -11,38 +12,47 @@ interface AddToWishlistButtonsProps {
 export const AddToWishlistButtons: React.FC<AddToWishlistButtonsProps> = ({
   game,
 }): React.ReactElement<ButtonProps> => {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
 
-  const gamesInWishlist = useAppSelector((state) => state.gamelist.catalogs[0].games);
+  const catalogWithGame = useAppSelector((state) =>
+    state.gamelist.catalogs.find((catalog) =>
+      catalog.games.find((gameInCatalog) => gameInCatalog.id === game.id)
+    )
+  );
 
-  const addGameToWishlistHandler = useCallback(
+  const removeGameFromWishlistHandler = useCallback(
     (game: FTPGame) => {
-      dispatch(addGameToCatalog({ game: game, catalogId: '1' }));
+      console.log(game);
+      dispatch(
+        removeGameFromCatalog({ gameId: game.id, catalogId: catalogWithGame?.id as string })
+      );
     },
     [dispatch]
   );
 
-  const removeGameFromWishlistHandler = useCallback(
-    (game: FTPGame) => dispatch(removeGameFromCatalog({ gameId: game.id, catalogId: '1' })),
-    [dispatch]
-  );
-  return gamesInWishlist.find((gameInWishlist) => gameInWishlist.id === game.id) ? (
-    <Button
+  return catalogWithGame ? (
+    <IconButton
       icon="delete"
       mode="contained"
       style={{ backgroundColor: 'red', marginLeft: 10 }}
+      iconColor="#fff"
       onPress={() => removeGameFromWishlistHandler(game)}
-    >
-      Remove from Wishlist
-    </Button>
+    />
   ) : (
-    <Button
-      icon="plus"
-      mode="contained"
-      style={{ marginLeft: 10 }}
-      onPress={() => addGameToWishlistHandler(game)}
-    >
-      Add To Wishlist
-    </Button>
+    <>
+      <AddToCatalogModal
+        game={game}
+        visible={showModal}
+        handleCloseModal={() => setShowModal(false)}
+      />
+      <IconButton
+        icon="plus"
+        mode="contained"
+        style={{ marginLeft: 10, backgroundColor: 'green' }}
+        iconColor="#fff"
+        onPress={() => setShowModal(true)}
+      />
+    </>
   );
 };
