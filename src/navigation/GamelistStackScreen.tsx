@@ -2,10 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GamelistScreen } from '../screens/GamelistScreen';
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { CatalogScreen } from '../screens/CatalogScreen';
-import { ROUTES } from '../constants/routes';
 
 type RootStackParamList = {
-  Gamelist: undefined;
+  Gameslist: undefined;
   Catalog: { id: string; name: string };
 };
 
@@ -30,7 +29,7 @@ export const GamelistStackScreen = () => {
         headerBlurEffect: 'regular',
       }}
     >
-      <Stack.Screen name={'Gamelist'} component={GamelistScreen} />
+      <Stack.Screen name={'Gameslist'} component={GamelistScreen} />
       <Stack.Screen
         name="Catalog"
         component={CatalogScreen}
