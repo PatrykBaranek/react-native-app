@@ -10,12 +10,7 @@ interface initialState {
 const initialState: initialState = {
   catalogs: [
     {
-      id: '1',
-      name: 'Wishlist',
-      games: [],
-    },
-    {
-      id: '2',
+      id: nanoid(),
       name: 'Favorites',
       games: [],
     },
