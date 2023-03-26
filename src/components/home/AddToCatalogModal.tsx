@@ -27,6 +27,7 @@ export const AddToCatalogModal: React.FC<AddToCatalogModalProps> = ({
 
   return (
     <ModalContainer
+      title="Add game to catalog"
       visible={visible}
       handleCloseModal={handleCloseModal}
       handleAddFunction={handleAddToCatalog}

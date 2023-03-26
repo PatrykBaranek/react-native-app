@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { Button, Portal } from 'react-native-paper';
+import { Button, Portal, Text } from 'react-native-paper';
 import Modal from 'react-native-modal';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { View, StyleSheet, ScrollView } from 'react-native';
@@ -7,6 +7,7 @@ import { addGameToCatalog } from '../../app/gamelistSlice/gamelistSlice';
 
 interface ModalContainerProps {
   children: ReactElement;
+  title: string;
   visible: boolean;
   handleCloseModal: () => void;
   handleAddFunction: () => void;
@@ -14,6 +15,7 @@ interface ModalContainerProps {
 
 export const ModalContainer: React.FC<ModalContainerProps> = ({
   children,
+  title,
   visible,
   handleCloseModal,
   handleAddFunction,
@@ -22,8 +24,23 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
     <Portal>
       <Modal isVisible={visible} onDismiss={handleCloseModal}>
         <View style={styles.modal}>
+          <View>
+            <Text
+              variant="titleLarge"
+              style={{ color: '#fff', textAlign: 'center', marginBottom: 10 }}
+            >
+              {title}
+            </Text>
+          </View>
           <ScrollView style={{ flexGrow: 1 }}>{children}</ScrollView>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: 10 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              padding: 10,
+              marginTop: 10,
+            }}
+          >
             <Button mode="contained-tonal" onPress={handleCloseModal}>
               Cancel
             </Button>
@@ -40,7 +57,7 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
 const styles = StyleSheet.create({
   modal: {
     justifyContent: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#141313',
     borderRadius: 20,
     padding: 20,
   },

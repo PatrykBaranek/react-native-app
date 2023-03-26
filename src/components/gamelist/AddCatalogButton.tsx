@@ -27,6 +27,7 @@ export const AddCatalogButton = () => {
   return (
     <>
       <ModalContainer
+        title="Add new catalog"
         visible={openAddCatalogModal}
         handleCloseModal={handleCloseModal}
         handleAddFunction={handleAddCatalog}
