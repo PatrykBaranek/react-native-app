@@ -1,5 +1,5 @@
 import { ButtonProps, IconButton } from 'react-native-paper';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FTPGame } from '../../app/api/freeToPlayapi';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { removeGameFromCatalog } from '../../app/gamelistSlice/gamelistSlice';
@@ -23,7 +23,6 @@ export const AddToWishlistButtons: React.FC<AddToWishlistButtonsProps> = ({
 
   const removeGameFromWishlistHandler = useCallback(
     (game: FTPGame) => {
-      console.log(game);
       dispatch(
         removeGameFromCatalog({ gameId: game.id, catalogId: catalogWithGame?.id as string })
       );
@@ -31,15 +30,19 @@ export const AddToWishlistButtons: React.FC<AddToWishlistButtonsProps> = ({
     [dispatch]
   );
 
-  return catalogWithGame ? (
-    <IconButton
-      icon="delete"
-      mode="contained"
-      style={{ backgroundColor: 'red', marginLeft: 10 }}
-      iconColor="#fff"
-      onPress={() => removeGameFromWishlistHandler(game)}
-    />
-  ) : (
+  if (catalogWithGame) {
+    return (
+      <IconButton
+        icon="delete"
+        mode="contained"
+        style={{ backgroundColor: 'red', marginLeft: 10 }}
+        iconColor="#fff"
+        onPress={() => removeGameFromWishlistHandler(game)}
+      />
+    );
+  }
+
+  return (
     <>
       <AddToCatalogModal
         game={game}

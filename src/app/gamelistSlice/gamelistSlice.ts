@@ -3,11 +3,11 @@ import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
 export type CatalogType = { id: string; name: string; games: GamesType[] };
 export type GamesType = { id: number; title: string; genre: string; addDate?: string };
 
-interface initialState {
+interface InitialState {
   catalogs: CatalogType[];
 }
 
-const initialState: initialState = {
+const initialState: InitialState = {
   catalogs: [
     {
       id: nanoid(),
@@ -22,33 +22,35 @@ const gamelistSlice = createSlice({
   initialState,
   reducers: {
     createNewCatalog: (state, action: PayloadAction<string>) => {
-      const newCatalog = {
+      const catalogNameExists = state.catalogs.some((catalog) => catalog.name === action.payload);
+
+      if (catalogNameExists) {
+        return;
+      }
+
+      const newCatalog: CatalogType = {
         id: nanoid(),
         name: action.payload,
         games: [],
       };
 
-      if (state.catalogs.find((catalog) => catalog.name === action.payload)) {
-        console.warn('Catalog with this name already exists');
-        return;
-      }
-
       state.catalogs.push(newCatalog);
     },
     removeCatalog: (state, action: PayloadAction<string>) => {
-      const catalogToDelete = state.catalogs.find((catalog) => catalog.id === action.payload);
+      const catalogIndex = state.catalogs.findIndex((catalog) => catalog.id === action.payload);
 
-      if (!catalogToDelete) {
-        console.warn('Catalog with this id does not exist');
+      if (catalogIndex === -1) {
         return;
       }
 
-      state.catalogs = state.catalogs.filter((catalog) => catalog.id !== action.payload);
+      state.catalogs.splice(catalogIndex, 1);
     },
     addGameToCatalog: (state, action: PayloadAction<{ catalogId: string; game: GamesType }>) => {
-      state.catalogs
-        .find((catalog) => catalog.id === action.payload.catalogId)
-        ?.games.push({ ...action.payload.game, addDate: new Date().toISOString() });
+      const catalog = state.catalogs.find((catalog) => catalog.id === action.payload.catalogId);
+
+      if (catalog) {
+        catalog.games.push({ ...action.payload.game, addDate: new Date().toISOString() });
+      }
     },
     removeGameFromCatalog: (
       state,
@@ -58,13 +60,15 @@ const gamelistSlice = createSlice({
       const catalog = state.catalogs.find((catalog) => catalog.id === catalogId);
 
       if (catalog) {
-        const updatedGames = catalog.games.filter((game) => game.id !== gameId);
-        catalog.games = updatedGames;
+        catalog.games = catalog.games.filter((game) => game.id !== gameId);
       }
+    },
+    reset(state) {
+      state.catalogs = initialState.catalogs;
     },
   },
 });
 
-export const { createNewCatalog, removeCatalog, addGameToCatalog, removeGameFromCatalog } =
+export const { createNewCatalog, removeCatalog, addGameToCatalog, removeGameFromCatalog, reset } =
   gamelistSlice.actions;
 export default gamelistSlice.reducer;
